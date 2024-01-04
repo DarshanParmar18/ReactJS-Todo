@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 45px;
+  font-weight: 700;
+  margin: 30px;
+}
+h2 {
+  margin-top: 30px;
+}
+
+input {
+  width: 100%;
+}
+
+.items-container {
+  text-align: left;
+}
+
+/* .row-ln {
+  margin: 10px 5px;
+} */
+.btn-ln {
+  min-width: 80px;
+}
