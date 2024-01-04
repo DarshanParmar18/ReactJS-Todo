@@ -1,4 +1,5 @@
 import style from "./TodoItems.module.css";
+import { MdDeleteSweep } from "react-icons/md";
 
 function TodoItems({ itemName, itemDate, onDelete }) {
   return (
@@ -15,7 +16,7 @@ function TodoItems({ itemName, itemDate, onDelete }) {
                 onDelete(itemName);
               }}
             >
-              Delete
+              <MdDeleteSweep />
             </button>
           </div>
         </div>

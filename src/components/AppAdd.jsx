@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { MdFormatListBulletedAdd } from "react-icons/md";
 
 function AppAdd({ clickAdd }) {
   const [todoName, setTodoName] = useState("");
@@ -39,7 +40,7 @@ function AppAdd({ clickAdd }) {
             className="btn btn-success btn-ln"
             onClick={() => handledAddTodobtn()}
           >
-            Add
+            <MdFormatListBulletedAdd />
           </button>
         </div>
       </div>
