@@ -1,23 +1,21 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { MdFormatListBulletedAdd } from "react-icons/md";
 
 function AppAdd({ clickAdd }) {
-  const [todoName, setTodoName] = useState("");
-  const [todoDate, setTodoDate] = useState("");
+  // const [todoName, setTodoName] = useState("");
+  // const [todoDate, setTodoDate] = useState("");
 
-  const todoNameOnChange = (e) => {
-    setTodoName(e.target.value);
-  };
-  const todoDateOnChange = (e) => {
-    setTodoDate(e.target.value);
-  };
+  const todoNameElement = useRef();
+  const todoDateElement = useRef();
 
   const handledAddTodobtn = () => {
-    if (todoName != "" && todoDate != "") {
-      clickAdd(todoName, todoDate);
-      setTodoName("");
-      setTodoDate("");
-    }
+    const todoName = todoNameElement.current.value;
+    const todoDate = todoDateElement.current.value;
+    clickAdd(todoName, todoDate);
+    todoNameElement.current.value = "";
+    todoDateElement.current.value = "";
+    // setTodoName("");
+    // setTodoDate("");
   };
 
   return (
@@ -27,12 +25,11 @@ function AppAdd({ clickAdd }) {
           <input
             type="text"
             placeholder="Enter Todo here"
-            value={todoName}
-            onChange={todoNameOnChange}
+            ref={todoNameElement}
           />
         </div>
         <div className="col-4">
-          <input type="date" value={todoDate} onChange={todoDateOnChange} />
+          <input type="date" ref={todoDateElement} />
         </div>
         <div className="col-2">
           <button
