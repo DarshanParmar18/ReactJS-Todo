@@ -28,11 +28,10 @@ function App() {
   const [todoItems, setTodoItems] = useState([]);
 
   const handleAddTodo = (itemTodoName, itemTodoDate) => {
-    const newTodoItems = [
-      ...todoItems,
+    setTodoItems((currentVal) => [
+      ...currentVal,
       { TodoName: itemTodoName, TodoDate: itemTodoDate },
-    ];
-    setTodoItems(newTodoItems);
+    ]);
     console.log("Item added");
   };
 
