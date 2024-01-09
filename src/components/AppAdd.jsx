@@ -1,17 +1,18 @@
-import { useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import { MdFormatListBulletedAdd } from "react-icons/md";
+import { TodoItemsContext } from "../store/TodoItems-store";
 
-function AppAdd({ clickAdd }) {
+function AppAdd() {
   // const [todoName, setTodoName] = useState("");
   // const [todoDate, setTodoDate] = useState("");
-
+  const { addNewItem } = useContext(TodoItemsContext);
   const todoNameElement = useRef();
   const todoDateElement = useRef();
 
   const handledAddTodobtn = () => {
     const todoName = todoNameElement.current.value;
     const todoDate = todoDateElement.current.value;
-    clickAdd(todoName, todoDate);
+    addNewItem(todoName, todoDate);
     todoNameElement.current.value = "";
     todoDateElement.current.value = "";
     // setTodoName("");

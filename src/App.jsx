@@ -4,6 +4,7 @@ import AppAdd from "./components/AppAdd";
 import "./App.css";
 import ItemsContainer from "./components/ItemsContainer";
 import Message from "./components/message";
+import { TodoItemsContext } from "./store/TodoItems-store";
 
 function App() {
   // const iniTodoItems = [
@@ -27,7 +28,7 @@ function App() {
 
   const [todoItems, setTodoItems] = useState([]);
 
-  const handleAddTodo = (itemTodoName, itemTodoDate) => {
+  const addNewItem = (itemTodoName, itemTodoDate) => {
     setTodoItems((currentVal) => [
       ...currentVal,
       { TodoName: itemTodoName, TodoDate: itemTodoDate },
@@ -35,7 +36,7 @@ function App() {
     console.log("Item added");
   };
 
-  const handleDeleteTodo = (itemName) => {
+  const deleteItem = (itemName) => {
     const newTodoItems = todoItems.filter(
       (items) => items.TodoName != itemName
     );
@@ -43,12 +44,20 @@ function App() {
   };
 
   return (
-    <center className="todo-container">
-      <AppName />
-      <AppAdd clickAdd={handleAddTodo} />
-      {todoItems == 0 && <Message />}
-      <ItemsContainer allItems={todoItems} onDelete={handleDeleteTodo} />
-    </center>
+    <TodoItemsContext.Provider
+      value={{
+        todoItems,
+        addNewItem,
+        deleteItem,
+      }}
+    >
+      <center className="todo-container">
+        <AppName />
+        <AppAdd />
+        <Message />
+        <ItemsContainer />
+      </center>
+    </TodoItemsContext.Provider>
   );
 }
 

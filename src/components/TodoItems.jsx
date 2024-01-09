@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import style from "./TodoItems.module.css";
 import { MdDeleteSweep } from "react-icons/md";
+import { TodoItemsContext } from "../store/TodoItems-store";
 
-function TodoItems({ itemName, itemDate, onDelete }) {
+function TodoItems({ itemName, itemDate }) {
+  const { deleteItem } = useContext(TodoItemsContext);
   return (
     <>
       <div className={`container`}>
@@ -13,7 +16,7 @@ function TodoItems({ itemName, itemDate, onDelete }) {
               type="button"
               className="btn btn-danger btn-ln"
               onClick={() => {
-                onDelete(itemName);
+                deleteItem(itemName);
               }}
             >
               <MdDeleteSweep />
