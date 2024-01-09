@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import AppName from "./components/AppName";
 import AppAdd from "./components/AppAdd";
 import "./App.css";
 import ItemsContainer from "./components/ItemsContainer";
 import Message from "./components/message";
-import { TodoItemsContext } from "./store/TodoItems-store";
+import TodoItemsContextTextProvider, {
+  TodoItemsContext,
+} from "./store/TodoItems-store";
 
 function App() {
   // const iniTodoItems = [
@@ -26,38 +28,17 @@ function App() {
   //   },
   // ];
 
-  const [todoItems, setTodoItems] = useState([]);
-
-  const addNewItem = (itemTodoName, itemTodoDate) => {
-    setTodoItems((currentVal) => [
-      ...currentVal,
-      { TodoName: itemTodoName, TodoDate: itemTodoDate },
-    ]);
-    console.log("Item added");
-  };
-
-  const deleteItem = (itemName) => {
-    const newTodoItems = todoItems.filter(
-      (items) => items.TodoName != itemName
-    );
-    setTodoItems(newTodoItems);
-  };
+  // const [todoItems, setTodoItems] = useState([]);
 
   return (
-    <TodoItemsContext.Provider
-      value={{
-        todoItems,
-        addNewItem,
-        deleteItem,
-      }}
-    >
+    <TodoItemsContextTextProvider>
       <center className="todo-container">
         <AppName />
         <AppAdd />
         <Message />
         <ItemsContainer />
       </center>
-    </TodoItemsContext.Provider>
+    </TodoItemsContextTextProvider>
   );
 }
 
